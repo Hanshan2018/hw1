@@ -106,7 +106,7 @@
 -- Drop existing tables, so you'll start fresh each time this script is run.
 
 DROP TABLE IF EXISTS movies;
-DROP TABLE IF EXISTS casts;
+DROP TABLE IF EXISTS roles;
 DROP TABLE IF EXISTS studios;
 DROP TABLE IF EXISTS actors;
 
@@ -120,7 +120,7 @@ CREATE TABLE movies (
   studio_id TEXT
 );
 
-CREATE TABLE casts (
+CREATE TABLE roles (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   movie_id TEXT,
   actor_id TEXT,
@@ -173,7 +173,7 @@ INSERT INTO movies (
 ("The Dark Knight Rises","2012","PG-13","1")
 ;
 
-INSERT INTO casts (
+INSERT INTO roles (
   movie_id,
   actor_id,
   character_name
@@ -214,7 +214,7 @@ FROM movies INNER JOIN studios ON movies.studio_id = studios.id;
 
 
 -- The SQL statement for the cast output
-SELECT movies.movie_title, actors.actor_name, casts.character_name
-FROM movies INNER JOIN casts ON movies.id = casts.movie_id
-INNER JOIN actors ON actors.id = casts.actor_id;
+SELECT movies.movie_title, actors.actor_name, roles.character_name
+FROM movies INNER JOIN roles ON movies.id = roles.movie_id
+INNER JOIN actors ON actors.id = roles.actor_id;
 
