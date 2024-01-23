@@ -193,32 +193,7 @@ INSERT INTO casts (
 ("3","9","Bane"),
 ("3","10","John Blake"),
 ("3","11","Selina Kyle")
-;
-
--- Batman Begins          Christian Bale        Bruce Wayne
--- Batman Begins          Michael Caine         Alfred
--- Batman Begins          Liam Neeson           Ra's Al Ghul
--- Batman Begins          Katie Holmes          Rachel Dawes
--- Batman Begins          Gary Oldman           Commissioner Gordon
--- The Dark Knight        Christian Bale        Bruce Wayne
--- The Dark Knight        Heath Ledger          Joker
--- The Dark Knight        Aaron Eckhart         Harvey Dent
--- The Dark Knight        Michael Caine         Alfred
--- The Dark Knight        Maggie Gyllenhaal     Rachel Dawes
--- The Dark Knight Rises  Christian Bale        Bruce Wayne
--- The Dark Knight Rises  Gary Oldman           Commissioner Gordon
--- The Dark Knight Rises  Tom Hardy             Bane
--- The Dark Knight Rises  Joseph Gordon-Levitt  John Blake
--- The Dark Knight Rises  Anne Hathaway         Selina Kyle      
-
-
-
-
-select * from actors;
-select * from studios;
-select * from movies;
-select * from casts;
-
+;  
 
 
 -- Prints a header for the movies output
@@ -227,7 +202,9 @@ select * from casts;
 .print ""
 
 -- The SQL statement for the movies output
--- TODO!
+SELECT movies.movie_title, movies.year_released, movies.MPAA_rating, studios.studio_name
+FROM movies INNER JOIN studios ON movies.studio_id = studios.id;
+
 
 -- Prints a header for the cast output
 .print ""
@@ -237,4 +214,7 @@ select * from casts;
 
 
 -- The SQL statement for the cast output
--- TODO!
+SELECT movies.movie_title, actors.actor_name, casts.character_name
+FROM movies INNER JOIN casts ON movies.id = casts.movie_id
+INNER JOIN actors ON actors.id = casts.actor_id;
+
